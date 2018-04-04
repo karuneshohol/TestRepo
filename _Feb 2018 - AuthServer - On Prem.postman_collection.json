@@ -1,0 +1,320 @@
+{
+	"info": {
+		"name": "_Feb 2018 - AuthServer - On Prem",
+		"_postman_id": "d4dfbab6-495d-9768-0779-fc0a8d22daab",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetAllClients",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "30452d45-2f0f-4dd1-b02f-f1b121dd7d2d",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "oauth1",
+					"oauth1": [
+						{
+							"key": "signatureMethod",
+							"value": "HMAC-SHA256",
+							"type": "string"
+						},
+						{
+							"key": "addEmptyParamsToSign",
+							"value": false,
+							"type": "boolean"
+						},
+						{
+							"key": "consumerSecret",
+							"value": "lsQl3iz74NG82Vk4KUat",
+							"type": "string"
+						},
+						{
+							"key": "consumerKey",
+							"value": "NWuNzL8wOJwPK~f6TnEZ",
+							"type": "string"
+						},
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "tokenSecret",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "timestamp",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "nonce",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "version",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "realm",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "addParamsToHeader",
+							"value": true,
+							"type": "boolean"
+						},
+						{
+							"key": "autoAddParam",
+							"value": false,
+							"type": "boolean"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "https://usalvwsunmaster.infor.com:29090/authorizationserver/as/v1/api/admin/clients",
+					"protocol": "https",
+					"host": [
+						"usalvwsunmaster",
+						"infor",
+						"com"
+					],
+					"port": "29090",
+					"path": [
+						"authorizationserver",
+						"as",
+						"v1",
+						"api",
+						"admin",
+						"clients"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "RegisterClient",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "767732fc-2b5e-48d0-bbf5-9792a2088936",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"var json = JSON.parse(responseBody);",
+							"pm.environment.set(\"client_id\", json.client_id);",
+							"pm.environment.set(\"client_secret\", json.client_secret);"
+						]
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "oauth1",
+					"oauth1": [
+						{
+							"key": "signatureMethod",
+							"value": "HMAC-SHA256",
+							"type": "string"
+						},
+						{
+							"key": "addEmptyParamsToSign",
+							"value": false,
+							"type": "boolean"
+						},
+						{
+							"key": "consumerSecret",
+							"value": "lsQl3iz74NG82Vk4KUat",
+							"type": "string"
+						},
+						{
+							"key": "consumerKey",
+							"value": "NWuNzL8wOJwPK~f6TnEZ",
+							"type": "string"
+						},
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "tokenSecret",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "timestamp",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "nonce",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "version",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "realm",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "addParamsToHeader",
+							"value": true,
+							"type": "boolean"
+						},
+						{
+							"key": "autoAddParam",
+							"value": false,
+							"type": "boolean"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "https://usalvwsunmaster.infor.com:29090/authorizationserver/as/v1/api/clients/ifs",
+					"protocol": "https",
+					"host": [
+						"usalvwsunmaster",
+						"infor",
+						"com"
+					],
+					"port": "29090",
+					"path": [
+						"authorizationserver",
+						"as",
+						"v1",
+						"api",
+						"clients",
+						"ifs"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GenerateToken",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "6a26a24e-c8e4-40cb-92c6-85192ab17ca6",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "client_credentials",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "{{client_id}}",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "{{client_secret}}",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://usalvwsunmaster.infor.com:29090/authorizationserver/as/v1/token",
+					"protocol": "https",
+					"host": [
+						"usalvwsunmaster",
+						"infor",
+						"com"
+					],
+					"port": "29090",
+					"path": [
+						"authorizationserver",
+						"as",
+						"v1",
+						"token"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "aff5fe5f-4184-4806-8d9b-6203920518c4",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "2f838479-aad4-4d75-9b8d-370894387004",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
